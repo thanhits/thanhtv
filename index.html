@@ -44,7 +44,15 @@ limitations under the License.
                         <!-- div to display the generated Instance ID token -->
                         <div id="token_div" style="">
                             <h4>Instance ID Token</h4>
-                            <p id="token" style="word-break: break-all;"></p>
+                            <label>Tiêu đề</label>
+                                  <input type="text"  class="form-control title-mes">
+                            <label>Nội dung</label>
+                                <input type="text"  class="form-control body-mes">
+                            <label>Link</label>
+                                <input type="text"  class="form-control link-mes">
+                            <label>Topic - Nhóm người dùng đăng ký nhận tin</label>
+                                <input type="text"  class="form-control topic-mes">
+                            <span>ví dụ: <b>/topics/blackfriday</b> - Nhóm này được cung cấp bởi đội kỹ thuật</span>
                             <button id="btnPostNotify" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                 Send Message
                             </button>
@@ -68,24 +76,26 @@ limitations under the License.
         </main>
     </div>
     <script>
-           $('#btnPostNotify').on("click", function () {
+        $(document).ready(function () {
+
+        <%--  var btnPostNotify = document.getElementById('<%= btnPostNotify.ClientID %>');--%>
+
+        var titleMessage = $('.title-mes').val();
+        var bodyMessage = $('.body-mes').val();
+        var linkAction = $('.link-mes').val();
+        var topicUser = $('.toppic-mes').val();
+
+        $('#btnPostNotify').on("click", function () {
             var request = {
-                "to": "dwv_KIjBZ1Y:APA91bH-DBdKrDC6WqQA8yplyCsDHLTx1oDTjtgkEMwhHZkRn_ZQfKHLyQ6zr7NwtYvKPq4jhPiZfBw6Qp_HVKfQxNKwRGS4Kfd0BVZAcjdtMtjlf-O-S0lD3sN3uRaPycrsWqBgQ1w0",
+                "to": topicUser,
                 "data": {
                     "notification": {
-                        "title": "Websosanh Test Form",
-                        "body": "Feel and dance !",
+                        "title": titleMessage,
+                        "body": bodyMessage,
                         "icon": "/firebase-logo.png",
-                        "click_action": "https://www.youtube.com/watch?v=nHKLmsVnetY"
+                        "click_action": linkAction
                     }
                 }
-                //"notification": {
-                //    "title": "Websosanh Test Form",
-                //    "body": "Feel and dance !",
-                //    "icon": "/firebase-logo.png",
-                //    "click_action": "https://www.youtube.com/watch?v=nHKLmsVnetY"
-                //},
-                //"to": "dwv_KIjBZ1Y:APA91bH-DBdKrDC6WqQA8yplyCsDHLTx1oDTjtgkEMwhHZkRn_ZQfKHLyQ6zr7NwtYvKPq4jhPiZfBw6Qp_HVKfQxNKwRGS4Kfd0BVZAcjdtMtjlf-O-S0lD3sN3uRaPycrsWqBgQ1w0"
             };
 
             $.ajax({
@@ -94,17 +104,7 @@ limitations under the License.
                     'Authorization': 'key=AIzaSyBRu7f12ZSW0cbSFW_1gdAbAkHq9DUxdBQ',
                     'Content-Type': 'application/json'
                 },
-                data: JSON.stringify({
-                    "to": "dwv_KIjBZ1Y:APA91bH-DBdKrDC6WqQA8yplyCsDHLTx1oDTjtgkEMwhHZkRn_ZQfKHLyQ6zr7NwtYvKPq4jhPiZfBw6Qp_HVKfQxNKwRGS4Kfd0BVZAcjdtMtjlf-O-S0lD3sN3uRaPycrsWqBgQ1w0",
-                    "data": {
-                        "notification": {
-                            "title": "Websosanh Test Form",
-                            "body": "Feel and dance !",
-                            "icon": "/firebase-logo.png",
-                            "click_action": "https://www.youtube.com/watch?v=nHKLmsVnetY"
-                        }
-                    }
-                }),
+                data: JSON.stringify(request),
                 method: 'POST',
                 success: function (data, textStatus, jqXhr) {
                     console.log('Sending IID Token to server: ', textStatus, jqXhr);
@@ -114,6 +114,7 @@ limitations under the License.
                 }
             });
         });
+        });    
     </script>
 </body>
 </html>
