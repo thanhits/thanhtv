@@ -102,7 +102,19 @@ limitations under the License.
                     'Authorization': 'key=AIzaSyBRu7f12ZSW0cbSFW_1gdAbAkHq9DUxdBQ',
                     'Content-Type': 'application/json'
                 },
-                data: JSON.stringify(request),
+                data: JSON.stringify(
+                {
+                    "to": topicUser,
+                    "data": {
+                        "notification": {
+                            "title": titleMessage,
+                            "body": bodyMessage,
+                            "icon": "/firebase-logo.png",
+                            "click_action": linkAction
+                        }
+                    }
+                }
+                ),
                 method: 'POST',
                 success: function (data, textStatus, jqXhr) {
                     console.log('Sending IID Token to server: ', textStatus, jqXhr);
