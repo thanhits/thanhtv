@@ -77,13 +77,11 @@ limitations under the License.
     </div>
     <script>
         $(document).ready(function () {
-
-        var titleMessage = $('.title-mes').val();
+        $('#btnPostNotify').on("click", function () {
+                 var titleMessage = $('.title-mes').val();
         var bodyMessage = $('.body-mes').val();
         var linkAction = $('.link-mes').val();
         var topicUser = $('.toppic-mes').val();
-
-        $('#btnPostNotify').on("click", function () {
             var request = {
                 "to": topicUser,
                 "data": {
