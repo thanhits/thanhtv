@@ -82,17 +82,8 @@ limitations under the License.
         var bodyMessage = $('.body-mes').val();
         var linkAction = $('.link-mes').val();
         var topicUser = $('.topic-mes').val();
-            var request = {
-                "to": topicUser,
-                "data": {
-                    "notification": {
-                        title: titleMessage,
-                       body: bodyMessage,
-                       icon: "/firebase-logo.png",
-                        click_action: linkAction
-                    }
-                }
-            };
+            
+              var dts = Math.floor(Date.now());
             
             console.log(request);
 
@@ -110,7 +101,8 @@ limitations under the License.
                             "title": titleMessage,
                             "body": bodyMessage,
                             "icon": "/firebase-logo.png",
-                            "click_action": linkAction
+                            "click_action": linkAction,
+                            "timeStamp": dts
                     }
                 }
                 ),
